@@ -1,5 +1,12 @@
 //** body, image/object/video, hr, links
 
+body {
+    background: $bg-color;
+    &.home {
+        background: $color-primary;
+    }
+}
+
 main {
     height: 100%;
 }

@@ -2,6 +2,14 @@
 
 //## primary navigation
 .nav--primary {
-    background: green;
-    color: red;
+    float: right;
+    display: inline-block;
+    margin: 5px 0;
+    > li > a:hover,
+    > li > a:active {
+        background: $color-primary-dark;
+    }
+    a {
+        color: $white;
+    }
 }

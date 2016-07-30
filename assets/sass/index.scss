@@ -16,10 +16,10 @@
 // helpers to contain [clearfix, f-right, etc. ] 
 @import "generic/helpers";
 @import "generic/grid";
-@import "generic/main";                  //body, image/object/video, hr, links
-//@import "generic/media";                 //image/object/video
-//@import "generic/typography";            //headings, p, blockquote, small, code, pre
-@import "generic/defaults";               //links, input, form
+@import "generic/main";                     //body, image/object/video, hr, links
+//@import "generic/media";                  //image/object/video
+//@import "generic/typography";             //headings, p, blockquote, small, code, pre
+@import "generic/defaults";                 //links, input, form
 
 @import "generic/bootstrap";
 

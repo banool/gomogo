@@ -4,7 +4,7 @@ $header-height: 50px;
 
 //## header primary
 .header {
-    background: #f2f2f2;
+    background: $color-primary;
     color: red;
     position: fixed;
     height: $header-height;
@@ -14,7 +14,8 @@ $header-height: 50px;
     overflow: hidden;    
 
     .header__identity {
-        margin: 0;
+        margin: 5px 0;
+        display: inline-block;
     }
 
     .logo {
@@ -23,9 +24,9 @@ $header-height: 50px;
         display: inline-block;
         position: relative;
         margin: 0;
-        height: 40px;
+        height: 30px;
         top: 5px;
-        width: 40px;
+        width: 160px;
     }
 
     &.user-is-scrolldown {

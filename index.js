@@ -65,6 +65,9 @@ app.use('/status', serverStatus(app));
 app.use(middleware.globalLocals);
 app.get('/', middleware.index, middleware.render('template/index'));
 app.get('/home', middleware.index, middleware.render('template/index'));
+app.get('/questionnaire', middleware.index, middleware.render('template/questions'));
+app.get('/result', middleware.index, middleware.render('template/result'));
+app.get('/about', middleware.index, middleware.render('template/about'));
 
 app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));

@@ -431,6 +431,11 @@ textarea {
   overflow: hidden;
   text-indent: -9999em; }
 
+body {
+  background: #dce2de; }
+  body.home {
+    background: #1e7757; }
+
 main {
   height: 100%; }
 
@@ -3744,7 +3749,7 @@ button.list-group-item-danger {
     display: none !important; } }
 
 .header {
-  background: #f2f2f2;
+  background: #1e7757;
   color: red;
   position: fixed;
   height: 50px;
@@ -3753,15 +3758,16 @@ button.list-group-item-danger {
   transition: top 0.15s ease-in-out;
   overflow: hidden; }
   .header .header__identity {
-    margin: 0; }
+    margin: 5px 0;
+    display: inline-block; }
   .header .logo {
     background: url("/img/svg/logo.svg");
     display: inline-block;
     position: relative;
     margin: 0;
-    height: 40px;
+    height: 30px;
     top: 5px;
-    width: 40px; }
+    width: 160px; }
   .header.user-is-scrolldown {
     top: -50px; }
 
@@ -3769,8 +3775,14 @@ body {
   padding-top: 50px; }
 
 .nav--primary {
-  background: green;
-  color: red; }
+  float: right;
+  display: inline-block;
+  margin: 5px 0; }
+  .nav--primary > li > a:hover,
+  .nav--primary > li > a:active {
+    background: #135b40; }
+  .nav--primary a {
+    color: white; }
 
 .ol-control,
 .ol-scale-line {
