@@ -6,7 +6,8 @@
     display: inline-block;
     margin: 5px 0;
     > li > a:hover,
-    > li > a:active {
+    > li > a:active,
+    > li > a:focus {
         background: $color-primary-dark;
     }
     a {

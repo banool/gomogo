@@ -16,6 +16,27 @@ $header-height: 50px;
     .header__identity {
         margin: 5px 0;
         display: inline-block;
+        position: relative;
+        &:before {
+            content: '';
+            width: 600px;
+            height: 100px;
+            background: $color-secondary;
+            position: absolute;
+            right: 100%;
+            top: -10px;
+        }
+
+        &:after {
+            content: '';
+            width: 160px;
+            height: 100px;
+            background: linear-gradient(to right, rgba(224,191,30,1) 0%,rgba(0,0,0,0) 100%);
+            position: absolute;
+            left: 0;
+            top: -10px;
+            z-index: -1;
+        }
     }
 
     .logo {

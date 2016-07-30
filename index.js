@@ -37,8 +37,6 @@ var middleware = {
             description: 'A site to help you move from location to location',
             query: query,
             param: {}
-
-            ,data: '', response: ''
         };
 
         //overwrite locals based on query string
@@ -68,7 +66,6 @@ var middleware = {
             cb();
         });
     }
-
 };
 
 app.use('/status', serverStatus(app));
@@ -84,7 +81,8 @@ app.get('/questionnaire/3', middleware.question, middleware.render('template/que
 app.get('/questionnaire/4', middleware.question, middleware.render('template/questions'));
 
 
-app.get('/result', middleware.index, middleware.render('template/result'));
+app.get('/result', middleware.result, middleware.render('template/result'));
+
 app.get('/about', middleware.index, middleware.render('template/about'));
 
 app.listen(app.get('port'), function() {

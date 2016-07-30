@@ -4,37 +4,96 @@
   <% include ../template/base/head.ejs %>
 </head>
 
-<body class="questions">
+<body class="questions" data-current-question="<%= questionset %>">
     <% include ../object/header.ejs %>
 
     <div class="container">
-        <div class="content wrap grid" id="content" tabindex="-1">
+        <div class="content wrap grid" id="content">
 
             <main class="main">
-                <h1>some questions</h1>
-
+                
                 <% if(questionset == 1) { %>
-                    <p>question 1</p>
+                    <h1 class="question--title">How many people are moving?</h1>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button data-answer="single" class="nextquestion btn btn-default">Single</button>
+                        </div>
+                        <div class="col-md-4">
+                            <button data-answer="single" class="nextquestion btn btn-default">Couple</button>
+                        </div>
+                        <div class="col-md-4">
+                            <button data-answer="single" class="nextquestion btn btn-default">Couple<span>+ children</span></button>
+                        </div>
+                   
+                    </div>
                 <% } else if (questionset == 2) { %>
-                    <p>question 2</p>
+                    <h1 class="question--title">Occupations primary &amp; secondary earner?</h1>
+            
+                    <span class="input input--jiro">
+                        <input class="input__field input__field--jiro" type="text" id="p1-prof">
+                        <label class="input__label input__label--jiro" for="p1-prof">
+                            <span class="input__label-content input__label-content--jiro">Enter person 1 occupation</span>
+                        </label>
+                    </span>
+
+                    <span class="input input--jiro">
+                        <input class="input__field input__field--jiro" type="text" id="p1-prof">
+                        <label class="input__label input__label--jiro" for="p1-prof">
+                            <span class="input__label-content input__label-content--jiro">Enter person 2 occupation</span>
+                        </label>
+                    </span>
+
+                    <span class="input input--jiro">
+                        <input class="input__field input__field--jiro" type="text" id="p1-prof">
+                        <label class="input__label input__label--jiro" for="p1-prof">
+                            <span class="input__label-content input__label-content--jiro">What is your combined household income</span>
+                        </label>
+                    </span>
+
+                    <button data-answer="next" class="nextquestion btn btn-default">Next question</button>
                 <% } else if (questionset == 3) { %>
-                
-                    <a href="../result" class="btn btn-default">Next question</a>
-                
+                    <h1 class="question--title">Enter your current postcode?</h1>
+                    
+                    <button data-answer="next" class="nextquestion btn btn-default">Next question</button>
                 <% } else if (questionset == 4) { %>
-                    <p>question 4</p>
+                    <h1 class="question--title">What’s important to you? click all that apply</h1>
+
+                    <button data-answer="single" class="nextquestion btn btn-default">Next question</button>
                 <% } else { %>
 
                 <% } %>
-                    
-                <% if( questionset != 3 ) { %>
-                    <a href="<%= Number(questionset) + 1 %>" class="btn btn-default">Next question</a>
-                <% } %>
+
             </main>
         </div>
     </div>
     
     <% include ../template/base/javascript.ejs %>
+
+    <script>
+         $('input.input__field').on('focus', function(){
+            $(this).parent().addClass('input--filled');
+        });
+
+        // $('input.input__field').on('blur', function(){
+        //     $(this).parent().removeClass('input--filled');
+        // });
+
+        var curr = Number( $('body').attr('data-current-question') );
+
+        $('.nextquestion').on('click', function(e){
+            var response = $(this).attr('data-answer');
+            if( response == 'next') {
+                //get response from page...
+            } else {
+                //the button has the response
+                $.cookie('gomogo-q'+curr, response);
+            }
+            
+            var nextUrl = curr + 1;
+            window.location.href = nextUrl;
+        });
+        
+    </script>
 
     <% include ../dev/devtools.ejs %>
 </body>
