@@ -6,8 +6,8 @@
 from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
 import json
 
-#script constants
-PORT_NUMBER = 8080
+#script constants / port 80 for server, 8080 for localhost
+PORT_NUMBER = 80
 
 #This class will handles any incoming request from
 #the browser 
@@ -26,10 +26,25 @@ class myHandler(BaseHTTPRequestHandler):
 		self.end_headers()
 		print self.headers.getheader('Content-type')
 
+	# json test response
+	def jsontest(self):
+		self.standard_response()
+		data = { 'a' : 1, 'b' : 2, 'c' : 3, 'd' : 4, 'e' : 5 }
+		obj = json.dumps(data)
+		self.wfile.write(obj)
+
+	def invalidrequest(self):
+		self.standard_response()
+		self.wfile.write('Error! You have submitted an invalid request.')
+
 	#Handler for the GET requests
 	def do_GET(self):
 		if self.path=='/':
 			self.welcome()
+		if self.path=='/jsontest':
+			self.jsontest()
+		else:
+			self.invalidrequest()
 		return
 
 try:
