@@ -4,15 +4,32 @@
   <% include ../template/base/head.ejs %>
 </head>
 
-<body>
+<body class="questions">
     <% include ../object/header.ejs %>
 
     <div class="container">
         <div class="content wrap grid" id="content" tabindex="-1">
 
             <main class="main">
-            
-               
+                <h1>some questions</h1>
+
+                <% if(questionset == 1) { %>
+                    <p>question 1</p>
+                <% } else if (questionset == 2) { %>
+                    <p>question 2</p>
+                <% } else if (questionset == 3) { %>
+                
+                    <a href="../result" class="btn btn-default">Next question</a>
+                
+                <% } else if (questionset == 4) { %>
+                    <p>question 4</p>
+                <% } else { %>
+
+                <% } %>
+                    
+                <% if( questionset != 3 ) { %>
+                    <a href="<%= Number(questionset) + 1 %>" class="btn btn-default">Next question</a>
+                <% } %>
             </main>
         </div>
     </div>

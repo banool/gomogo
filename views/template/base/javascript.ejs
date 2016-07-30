@@ -39,26 +39,3 @@ function hasScrolled() {
     lastScrollTop = st;
 }
 </script>
-
-<!-- post test -->
-<script>
-
-function getData(){
-  var jqxhr = $.get( "http://google.com.au", function() {
-    console.log( "success" );
-  })
-  .done(function() {
-    console.log( "second success" );
-  })
-  .fail(function() {
-    console.log( "error" );
-  })
-  .always(function() {
-    console.log( "finished" );
-  });
-}
-
-$('#getdata').on('click', function(){
-    getData(); 
-});
-</script>

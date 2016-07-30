@@ -46,25 +46,23 @@ var middleware = {
             res.locals.sitebreakpoint = query.sitebreakpoint
         }
 
-        
-
         cb();
     },
 
     index: function (req, res, cb) {
         res.locals.index_specific_variable = 'somethingindexspecific';
-        res.locals.template = 'home';
         cb();
     },
 
-    article: function (req, res, cb) {
-        res.locals.article_specific_variable = 'some article specifc variables';
-        res.locals.template = 'article';
+    question: function (req, res, cb) {
+        
+        var routes = req.originalUrl.split("/");
+        res.locals.questionset = routes[routes.length-1];
         cb();
     },
 
-    send: function (req, res, cb) {
-        client.get("http://139.59.226.51/", function (data, response) {
+    result: function (req, res, cb) {
+        client.get("http://139.59.226.51/jsontest", function (data, response) {
             res.locals.data = data;
             res.locals.response = response;
             cb();
@@ -78,10 +76,14 @@ app.use('/status', serverStatus(app));
 app.use(middleware.globalLocals);
 app.get('/', middleware.index, middleware.render('template/index'));
 app.get('/home', middleware.index, middleware.render('template/index'));
-app.get('/send', middleware.send, middleware.render('template/index'));
 
 
-app.get('/questionnaire', middleware.index, middleware.render('template/questions'));
+app.get('/questionnaire/1', middleware.question, middleware.render('template/questions'));
+app.get('/questionnaire/2', middleware.question, middleware.render('template/questions'));
+app.get('/questionnaire/3', middleware.question, middleware.render('template/questions'));
+app.get('/questionnaire/4', middleware.question, middleware.render('template/questions'));
+
+
 app.get('/result', middleware.index, middleware.render('template/result'));
 app.get('/about', middleware.index, middleware.render('template/about'));
 
