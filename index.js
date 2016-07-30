@@ -29,7 +29,7 @@ var middleware = {
         var query = url_parts.query;
         var thing = serverStatus(app);
         res.locals = { 
-            title: 'Go move',
+            title: 'GOMOGO',
             sitebreakpoint: 'desktop',
             description: 'A site to help you move from location to location',
             query: query,
