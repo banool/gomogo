@@ -1,0 +1,55 @@
+//** helpers
+
+%clearfix {
+
+  &:after {
+    content: "" !important;
+    display: block !important;
+    clear: both !important;
+  }
+
+}
+
+.clearfix {
+  @extend %clearfix;
+}
+
+// Completely remove from the flow but leave available to screen readers
+%is-vishidden {
+    position: absolute !important;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    //Extends the .is-vishidden class to allow the element to be focusable when navigated to via the keyboard
+    &.focusable:active,
+    &.focusable:focus {
+        position: static!important;
+        height: auto;
+        width: auto;
+        overflow: visible;
+        clip: auto;
+    }
+}
+
+%is-visible {
+    display: block !important;
+}
+
+// Add  max-height to create expandable sections animation with css
+%is-closed {
+    overflow: hidden !important;
+}
+
+%is-open {
+    height: auto  !important;
+}
+
+%ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    text-indent: -9999em;
+}

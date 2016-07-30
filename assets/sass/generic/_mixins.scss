@@ -1,0 +1,11 @@
+//** Mixins
+
+//## Math
+// Strips the unit of measure and returns int
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+//## Icons
+
+//## Font

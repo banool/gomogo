@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../template/base/head.ejs %>
+</head>
+
+<body>
+    <% include ../object/header.ejs %>
+
+    <div class="outer-wrap">
+        <div class="content wrap grid" id="content" tabindex="-1">
+
+            <main class="main">
+            
+                <% include ../object/map.ejs %>
+            
+            </main>
+        </div>
+    </div>
+    
+    <% include ../template/base/javascript.ejs %>
+
+    <% include ../dev/devtools.ejs %>
+</body>
+</html>

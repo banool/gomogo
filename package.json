@@ -1,0 +1,21 @@
+{
+  "name": "brd",
+  "version": "1.0.0",
+  "description": "benrhodesdigital",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "ben rhodes",
+  "license": "ISC",
+  "devDependencies": {
+    "breakpoint-sass": "^2.7.0",
+    "ejs": "^2.4.2",
+    "express": "4.13.3",
+    "express-server-status": "^1.0.3",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.2",
+    "lodash": "^4.13.1",
+    "susy": "^2.2.12"
+  }
+}

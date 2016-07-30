@@ -1,0 +1,88 @@
+//** Resets
+
+//## apply a natural box layout model to all elements, but allowing components to change *
+// http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+// css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+// thanks to @paul_irish, @chriscoyier and @jon_neal
+
+html {
+  box-sizing: border-box;
+}
+*, 
+*:before, 
+*:after {
+  box-sizing: inherit;
+}
+
+//## generic reset
+// https://github.com/inuitcss/inuitcss/blob/develop/generic/_generic.reset.scss
+
+h1,h2,h3,h4,h5,h6,
+p,blockquote,pre,
+dl,dd,ol,ul,
+form,fieldset,legend,
+table,th,td,caption,
+hr{
+    margin:0;
+    padding:0;
+}
+
+// Remove trailing margins from nested lists.
+
+li > {
+
+  ul,
+  ol {
+    margin-bottom: 0;
+  }
+
+}
+
+//Remove default table spacing.
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+//## Give a help cursor to elements that give extra info on `:hover`.
+abbr[title],
+dfn[title]{
+    cursor:help;
+}
+
+//## Remove text-decoration from potentially troublesome elements.
+a,u,ins{
+    text-decoration:none;
+}
+
+//## apply faux underline via `border-bottom`
+// i have never used this element, but oh well
+ins {
+    border-bottom: 1px solid;
+}
+
+//## images
+// offset `alt text if src doesn't load
+img{
+    font-style:italic;
+}
+
+//## form elements 
+// give form elements some cursor interactions...
+label,
+input,
+textarea,
+button,
+select,
+option {
+    cursor:pointer;
+}
+
+.text-input:active,
+.text-input:focus,
+textarea:active,
+textarea:focus {
+    cursor:text;
+    outline:none;
+}

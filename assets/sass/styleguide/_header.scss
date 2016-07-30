@@ -1,0 +1,38 @@
+//** Header
+
+$header-height: 50px;
+
+//## header primary
+.header {
+    background: #f2f2f2;
+    color: red;
+    position: fixed;
+    height: $header-height;
+    width: 100%;
+    top: 0;
+    transition: top 0.15s ease-in-out;
+    overflow: hidden;    
+
+    .header__identity {
+        margin: 0;
+    }
+
+    .logo {
+        @extend %ir;
+        background: url('/img/svg/logo.svg');
+        display: inline-block;
+        position: relative;
+        margin: 0;
+        height: 40px;
+        top: 5px;
+        width: 40px;
+    }
+
+    &.user-is-scrolldown {
+        top: -$header-height;
+    }
+}
+
+body {
+    padding-top: $header-height;
+}

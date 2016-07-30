@@ -1,0 +1,14 @@
+<% if(query.devmode) { %>
+    <div id="devtools">
+        <h4>Devmode</h4>
+        <p>
+          position accuracy : <code class="accuracy"></code>&nbsp;&nbsp;
+          altitude : <code class="altitude"></code>&nbsp;&nbsp;
+          altitude accuracy : <code class="altitudeAccuracy"></code>&nbsp;&nbsp;
+          heading : <code class="heading"></code>&nbsp;&nbsp;
+          speed : <code class="speed"></code>
+        </p>
+    </div>
+
+    <% include ../dev/ascii.ejs %>
+<% } %>
