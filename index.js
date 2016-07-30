@@ -29,9 +29,9 @@ var middleware = {
         var query = url_parts.query;
         var thing = serverStatus(app);
         res.locals = { 
-            title: 'travelocal',
-            sitebreakpoint: 'mobile',
-            description: 'A description of the site',
+            title: 'Go move',
+            sitebreakpoint: 'desktop',
+            description: 'A site to help you move from location to location',
             query: query,
             param: {}
         };

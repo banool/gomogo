@@ -1,7 +1,10 @@
 //** Dev
 
 //## do not include this on production, this is where all styles should go until they make it into the site for REALS
-
+#devtools {
+    position: absolute;
+    bottom: 0;
+}
 .outer-wrap {
     height: 2000px;
 }
