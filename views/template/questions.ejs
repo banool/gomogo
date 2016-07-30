@@ -5,96 +5,185 @@
 </head>
 
 <body class="questions" data-current-question="<%= questionset %>">
-    <% include ../object/header.ejs %>
+	<% include ../object/header.ejs %>
 
-    <div class="container">
-        <div class="content wrap grid" id="content">
+	<div class="container">
+		<div class="content wrap grid" id="content">
 
-            <main class="main">
-                
-                <% if(questionset == 1) { %>
-                    <h1 class="question--title">How many people are moving?</h1>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <button data-answer="single" class="nextquestion btn btn-default">Single</button>
-                        </div>
-                        <div class="col-md-4">
-                            <button data-answer="single" class="nextquestion btn btn-default">Couple</button>
-                        </div>
-                        <div class="col-md-4">
-                            <button data-answer="single" class="nextquestion btn btn-default">Couple<span>+ children</span></button>
-                        </div>
-                   
-                    </div>
-                <% } else if (questionset == 2) { %>
-                    <h1 class="question--title">Occupations primary &amp; secondary earner?</h1>
-            
-                    <span class="input input--jiro">
-                        <input class="input__field input__field--jiro" type="text" id="p1-prof">
-                        <label class="input__label input__label--jiro" for="p1-prof">
-                            <span class="input__label-content input__label-content--jiro">Enter person 1 occupation</span>
-                        </label>
-                    </span>
+			<main class="main">
+				<% if(questionset == 1) { %>
+					<ol class="breadcrumb">
+					  <li><a href="/home">Home</a></li>
+					  <li class="active">Q1/4</li>
+					</ol>
+					<h1 class="question--title">Relationship status of person moving?</h1>
+					<div class="row">
+						<div class="col-md-4">
+							<button data-action="next" data-answer="single" class="nextquestion tall btn btn-default full">Single</button>
+						</div>
+						<div class="col-md-4">
+							<button data-action="next" data-answer="couple" class="nextquestion tall btn btn-default full">Couple</button>
+						</div>
+						<div class="col-md-4">
+							<button data-action="next" data-answer="family" class="nextquestion tall btn btn-default full">Couple<span>+ children</span></button>
+						</div>
+				   
+					</div>
+				<% } else if (questionset == '2') { %>
+					<ol class="breadcrumb">
+					  <li><a href="/home">Home</a></li>
+					  <li class="active">Q2/4</li>
+					</ol>
+					<h1 class="question--title">Occupation details?</h1>
+			
+					<span class="input input--jiro">
+						<input class="input__field input__field--jiro" type="text" id="p2-prof1">
+						<label class="input__label input__label--jiro" for="p2-prof1">
+							<span aria-hidden="false" class="altquestion input__label-content input__label-content--jiro">Enter first persons occupation</span>
+							<span aria-hidden="true" class="altquestion input__label-content input__label-content--jiro">Enter your occupation</span>
+						</label>
+					</span>
 
-                    <span class="input input--jiro">
-                        <input class="input__field input__field--jiro" type="text" id="p1-prof">
-                        <label class="input__label input__label--jiro" for="p1-prof">
-                            <span class="input__label-content input__label-content--jiro">Enter person 2 occupation</span>
-                        </label>
-                    </span>
+					<span class="input input--jiro altquestion" aria-hidden="false">
+						<input class="input__field input__field--jiro" type="text" id="p2-prof2">
+						<label class="input__label input__label--jiro" for="p2-prof2">
+							<span class="input__label-content input__label-content--jiro">Enter second persons occupation</span>
+						</label>
+					</span>
 
-                    <span class="input input--jiro">
-                        <input class="input__field input__field--jiro" type="text" id="p1-prof">
-                        <label class="input__label input__label--jiro" for="p1-prof">
-                            <span class="input__label-content input__label-content--jiro">What is your combined household income</span>
-                        </label>
-                    </span>
+					<span class="input input--jiro">
+						<input class="input__field input__field--jiro" type="text" id="p2-income">
+						<label class="input__label input__label--jiro" for="p2-income">
+							<span aria-hidden="false" class="altquestion input__label-content input__label-content--jiro">What is your combined household income</span>
+							<span aria-hidden="true" class="altquestion input__label-content input__label-content--jiro">What is your household income</span>
+						</label>
+					</span>
 
-                    <button data-answer="next" class="nextquestion btn btn-default">Next question</button>
-                <% } else if (questionset == 3) { %>
-                    <h1 class="question--title">Enter your current postcode?</h1>
-                    
-                    <button data-answer="next" class="nextquestion btn btn-default">Next question</button>
-                <% } else if (questionset == 4) { %>
-                    <h1 class="question--title">What’s important to you? click all that apply</h1>
+					<a data-action="next" class="nextquestion btn btn-default">Next question</a>
+				<% } else if (questionset == 3) { %>
+					<ol class="breadcrumb">
+					  <li><a href="/home">Home</a></li>
+					  <li class="active">Q3/4</li>
+					</ol>
+					<div class="row">
+						<div class="col-md-6">
+							<h1 class="question--title">Enter your current postcode?</h1>
 
-                    <button data-answer="single" class="nextquestion btn btn-default">Next question</button>
-                <% } else { %>
+							<span class="input input--jiro">
+								<input class="input__field input__field--jiro" type="text" id="p3-a">
+								<label class="input__label input__label--jiro" for="p1-prof">
+									<span class="input__label-content input__label-content--jiro">Current postcode</span>
+								</label>
+							</span>  
+						</div>
+						<div class="col-md-6">
+							<h1 class="question--title"><small>OPTIONAL</small>Do you have a destination in mind?</h1>
+							<span class="input input--jiro">
+								<input class="input__field input__field--jiro" type="text" id="p3-b">
+								<label class="input__label input__label--jiro" for="p1-prof">
+									<span class="input__label-content input__label-content--jiro">Postcode/City/Suburb</span>
+								</label>
+							</span>  
+						</div>
+					</div>
 
-                <% } %>
+					<a data-action="next" class="nextquestion btn btn-default">Next question</a>
+				<% } else if (questionset == 4) { %>
+					<ol class="breadcrumb">
+					  <li><a href="/home">Home</a></li>
+					  <li class="active">Q4/4</li>
+					</ol>
+					<h1 class="question--title">Last question, what’s important to you? click all that apply</h1>
+					
+					<div class="row">
+						<div class="col-md-4">
+							<input id="cb-1" class="checkbox" name="cb-1" type="checkbox">
+					        <label for="cb-1" class="checkbox-label">Public transport</label>
+						</div>
 
-            </main>
-        </div>
-    </div>
-    
-    <% include ../template/base/javascript.ejs %>
+						<div class="col-md-4">
+					        <input id="cb-2" class="checkbox" name="cb-2" type="checkbox" >
+					        <label for="cb-2" class="checkbox-label">Medical facilities</label>
+						</div>
 
-    <script>
-         $('input.input__field').on('focus', function(){
-            $(this).parent().addClass('input--filled');
-        });
+						<div class="col-md-4">
+					        <input id="cb-3" class="checkbox" name="cb-3" type="checkbox" >
+					        <label for="cb-3" class="checkbox-label">Child care facilities</label>
+						</div>
 
-        // $('input.input__field').on('blur', function(){
-        //     $(this).parent().removeClass('input--filled');
-        // });
+						<div class="col-md-4">
+							<input id="cb-4" class="checkbox" name="cb-4" type="checkbox" >
+					        <label for="cb-4" class="checkbox-label">Walking trails</label>
+						</div>
 
-        var curr = Number( $('body').attr('data-current-question') );
+						<div class="col-md-4">
+					        <input id="cb-5" class="checkbox" name="cb-5" type="checkbox" >
+					        <label for="cb-5" class="checkbox-label">Camping grounds</label>			
+						</div>
+					</div>
 
-        $('.nextquestion').on('click', function(e){
-            var response = $(this).attr('data-answer');
-            if( response == 'next') {
-                //get response from page...
-            } else {
-                //the button has the response
-                $.cookie('gomogo-q'+curr, response);
-            }
-            
-            var nextUrl = curr + 1;
-            window.location.href = nextUrl;
-        });
-        
-    </script>
+					<a data-action="next" class="nextquestion btn btn-default">Show me where to go</a>
+				<% } else { %>
 
-    <% include ../dev/devtools.ejs %>
+				<% } %>
+
+			</main>
+		</div>
+	</div>
+	
+	<% include ../template/base/javascript.ejs %>
+
+	<script>
+		 $('input.input__field').on('focus', function(){
+			$(this).parent().addClass('input--filled');
+		});
+
+		var curr = Number( $('body').attr('data-current-question') );
+
+		if( curr == 2 && $.cookie('gomogo-rel') == 'single') {
+			//hide based on aria attribute hten toggle if user clicked single
+			$('.altquestion[aria-hidden="true"]').attr('aria-hidden', 'false').addClass('has-changed');
+			$('.altquestion[aria-hidden="false"]:not(.has-changed)').attr('aria-hidden', 'true');
+		}
+
+		$('.nextquestion').on('click', function(e){
+			var action = $(this).attr('data-action'),
+				response;
+			if( action == 'next' ) {
+				//get answer from page...
+				switch(curr) {
+					case 1:
+						response = $(this).attr('data-answer');
+						$.cookie('gomogo-rel', response);
+						break;
+					case 2:
+						var income = $('#p2-income').val(), 
+						prof1 = $('#p2-prof1').val();
+						$.cookie('gomogo-income', income);
+						$.cookie('gomogo-prof1', prof1);
+
+						if($.cookie('gomogo-rel') != 'single'){
+							var prof2 = $('#p2-prof2').val();
+							$.cookie('gomogo-prof2', prof2);
+						} 
+						break;
+					case 3:
+						$.cookie('gomogo-postcode', $('#p3-a').val() );
+						if($('#p3-b').val()!='') {
+							$.cookie('gomogo-postcode-to', $('#p3-b').val() );
+						}
+						break;
+					default:
+						console.log('no next action');
+				}
+			} 
+
+			var nextUrl = curr + 1;
+			window.location.href = nextUrl;
+		});
+		
+	</script>
+
+	<% include ../dev/devtools.ejs %>
 </body>
 </html>
