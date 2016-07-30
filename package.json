@@ -16,6 +16,7 @@
     "gulp": "^3.9.1",
     "gulp-sass": "^2.3.2",
     "lodash": "^4.13.1",
+    "node-rest-client": "^2.0.1",
     "susy": "^2.2.12"
   }
 }

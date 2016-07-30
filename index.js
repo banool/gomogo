@@ -15,6 +15,9 @@ app.set('view engine', 'ejs');
 
 app.locals._ = _;
 
+var Client = require('node-rest-client').Client;
+var client = new Client();
+
 var middleware = {
 
     render: function (view) {
@@ -34,6 +37,8 @@ var middleware = {
             description: 'A site to help you move from location to location',
             query: query,
             param: {}
+
+            ,data: '', response: ''
         };
 
         //overwrite locals based on query string
@@ -56,6 +61,14 @@ var middleware = {
         res.locals.article_specific_variable = 'some article specifc variables';
         res.locals.template = 'article';
         cb();
+    },
+
+    send: function (req, res, cb) {
+        client.get("http://139.59.226.51/", function (data, response) {
+            res.locals.data = data;
+            res.locals.response = response;
+            cb();
+        });
     }
 
 };
@@ -65,6 +78,9 @@ app.use('/status', serverStatus(app));
 app.use(middleware.globalLocals);
 app.get('/', middleware.index, middleware.render('template/index'));
 app.get('/home', middleware.index, middleware.render('template/index'));
+app.get('/send', middleware.send, middleware.render('template/index'));
+
+
 app.get('/questionnaire', middleware.index, middleware.render('template/questions'));
 app.get('/result', middleware.index, middleware.render('template/result'));
 app.get('/about', middleware.index, middleware.render('template/about'));

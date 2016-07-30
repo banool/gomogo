@@ -431,10 +431,15 @@ textarea {
   overflow: hidden;
   text-indent: -9999em; }
 
+body.home, .home .header {
+  background-image: url("/img/massive-map.jpg");
+  background-blend-mode: multiply;
+  background-size: cover 100%; }
+
 body {
   background: #dce2de; }
   body.home {
-    background: #1e7757; }
+    background-color: #1e7757; }
 
 main {
   height: 100%; }

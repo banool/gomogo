@@ -1,9 +1,17 @@
 //** body, image/object/video, hr, links
 
+%homepage-bg-thing {
+    background-image: url('/img/massive-map.jpg');
+    background-blend-mode: multiply;
+    background-size: cover 100%;
+}
+
 body {
     background: $bg-color;
+
     &.home {
-        background: $color-primary;
+        background-color: $color-primary;
+        @extend %homepage-bg-thing;
     }
 }
 
