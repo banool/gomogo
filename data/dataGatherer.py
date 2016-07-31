@@ -20,12 +20,14 @@ if __name__ == "__main__":
 # This class exists in case we have extra info about each feature.
 # The extra info in the csv might contain information about where it is, what it's called, etc.
 class Feature:
-	def __init__(self, name, feature_id):
+	def __init__(self, name, feature_id, lat, lon):
 		self.name = name
 		self.feature_id = feature_id
+		self.lat = lat
+		self.lon = lon
 
 	def getDict(self):
-		return {"name": self.name, "feature_id": self.feature_id}
+		return {"name": self.name, "feature_id": self.feature_id, "lat": self.lat, "lon": self.lon}
 
 	def __str__(self):
 		return self.name
@@ -123,17 +125,23 @@ def readPostcodeData():
 
 
 	# Read FOI data.
-	with open("foi.csv", "r") as f:
+	with open("foi2.csv", "r") as f:
 		reader = csv.DictReader(f)
 
 		for foi in reader:
 			name = foi["feature_subtype"]
 			postcode = int(foi["postcode"])
 			feature_id = foi["feature_id"]
+			coords = foi["geom_text"].split(",")[-1][11:-1].split()
+			try:
+				lat, lon = map(float, coords)
+			except ValueError:
+				# Some values don't have both coords.
+				lat, lon = None, None
 
 			# Could read additional fields for each feature. Location info?
 
-			feature = Feature(name, feature_id)
+			feature = Feature(name, feature_id, lat, lon)
 
 			if postcode in postcodes:
 				postcodes[postcode].addFeature(feature)
