@@ -75,20 +75,22 @@ class myHandler(BaseHTTPRequestHandler):
 		else:
 			self.invalidrequest()		
 		return
+
 	
-
-	"""
-	def do_GET(self):
-		postcode = randint(3000, 3999)
-		try:
-			data = local[postcode].createFullDict()
-		except KeyError:
-
-		print(len(data[postcode]))
+	def do_POST(self):
+		data = None
+		while data is None or len(data) < 2:
+			postcode = randint(3000, 3999)
+			print("Trying postcode", postcode)
+			try:
+				data = local[postcode].createFullDict()
+			except KeyError:
+				data = None
+		print(len(data))
 		data = json.dumps(data)
 		self.standard_response()
 		self.wfile.write(data)
-	"""
+	
 
 try:
 	#Create a web server and define the handler to manage the

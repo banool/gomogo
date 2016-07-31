@@ -78,12 +78,6 @@ class Postcode:
 	def createGeoJSON(self):
 		postcodeDict = self.getDict(includeFeatures=True)
 		features = []
-		# Getting FOIs.
-		for feat in postcodeDict["features"]:
-			point = geojson.Point((feat["lat"], feat["lon"]))
-			# With the properties part we can specify more fields of each feature to include.
-			geoFeature = geojson.Feature(geometry=point, id=feat["feature_id"], properties = {k: feat[k] for k in (['name'])})
-			features.append(geoFeature)
 
 		# Getting the polygon boundary.
 		target = str(self.postcode)
@@ -92,9 +86,16 @@ class Postcode:
 			for p in data["features"]:
 				if p["properties"]["postcode"] == target:
 					print(type(p['geometry']['coordinates'][0][0]))
-					postcodePolygon = geojson.Feature(geometry=geojson.Polygon(p['geometry']['coordinates'][0][0]), id="suburb")
+					postcodePolygon = geojson.Feature(id="suburb", geometry=geojson.Polygon(p['geometry']['coordinates'][0][0]))
 
 		features.append(postcodePolygon)
+
+		# Getting FOIs.
+		for feat in postcodeDict["features"]:
+			point = geojson.Point((feat["lat"], feat["lon"]))
+			# With the properties part we can specify more fields of each feature to include.
+			geoFeature = geojson.Feature(geometry=point, id=feat["feature_id"], properties = {k: feat[k] for k in (['name'])})
+			features.append(geoFeature)
 
 		return geojson.FeatureCollection(features)
 
