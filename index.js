@@ -33,6 +33,7 @@ var middleware = {
         var thing = serverStatus(app);
         res.locals = { 
             title: 'GOMOGO',
+            teamname: 'super awesome poi team',
             sitebreakpoint: 'desktop',
             description: 'A site to help you move from location to location',
             query: query,
@@ -60,9 +61,9 @@ var middleware = {
     },
 
     result: function (req, res, cb) {
-        client.get("http://139.59.226.51/jsontest", function (data, response) {
+        var postcode = req.params.postcode;
+        client.get("http://139.59.226.51/"+postcode, function (data, response) {
             res.locals.data = data;
-            res.locals.response = response;
             cb();
         });
     }
@@ -81,7 +82,7 @@ app.get('/questionnaire/3', middleware.question, middleware.render('template/que
 app.get('/questionnaire/4', middleware.question, middleware.render('template/questions'));
 
 
-app.get('/result', middleware.result, middleware.render('template/result'));
+app.get('/result/:postcode', middleware.result, middleware.render('template/result'));
 
 app.get('/about', middleware.index, middleware.render('template/about'));
 

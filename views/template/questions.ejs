@@ -7,32 +7,31 @@
 <body class="questions" data-current-question="<%= questionset %>">
 	<% include ../object/header.ejs %>
 
-	<div class="container">
-		<div class="content wrap grid" id="content">
-
-			<main class="main">
+	<div class="content wrap" id="content">
+        <main class="main">
+			<div class="container">
 				<% if(questionset == 1) { %>
 					<ol class="breadcrumb">
 					  <li><a href="/home">Home</a></li>
-					  <li class="active">Q1/4</li>
+					  <li class="active">Question 1 of 4</li>
 					</ol>
 					<h1 class="question--title">Relationship status of person moving?</h1>
 					<div class="row">
 						<div class="col-md-4">
-							<button data-action="next" data-answer="single" class="nextquestion tall btn btn-default full">Single</button>
+							<button data-action="next" data-answer="single" class="nextquestion tall btn btn-default full"><img src="/img/svg/single.svg" width="30px" />Single</button>
 						</div>
 						<div class="col-md-4">
-							<button data-action="next" data-answer="couple" class="nextquestion tall btn btn-default full">Couple</button>
+							<button data-action="next" data-answer="couple" class="nextquestion tall btn btn-default full"><img src="/img/svg/couple.svg" width="55px" />Couple</button>
 						</div>
 						<div class="col-md-4">
-							<button data-action="next" data-answer="family" class="nextquestion tall btn btn-default full">Couple<span>+ children</span></button>
+							<button data-action="next" data-answer="family" class="nextquestion tall btn btn-default full"><img src="/img/svg/family.svg" width="70px" />Couple<span>+ children</span></button>
 						</div>
 				   
 					</div>
 				<% } else if (questionset == '2') { %>
 					<ol class="breadcrumb">
 					  <li><a href="/home">Home</a></li>
-					  <li class="active">Q2/4</li>
+					  <li class="active">Question 2 of 4</li>
 					</ol>
 					<h1 class="question--title">Occupation details?</h1>
 			
@@ -63,7 +62,7 @@
 				<% } else if (questionset == 3) { %>
 					<ol class="breadcrumb">
 					  <li><a href="/home">Home</a></li>
-					  <li class="active">Q3/4</li>
+					  <li class="active">Question 3 of 4</li>
 					</ol>
 					<div class="row">
 						<div class="col-md-6">
@@ -91,7 +90,7 @@
 				<% } else if (questionset == 4) { %>
 					<ol class="breadcrumb">
 					  <li><a href="/home">Home</a></li>
-					  <li class="active">Q4/4</li>
+					  <li class="active">Question 4 of 4</li>
 					</ol>
 					<h1 class="question--title">Last question, what’s important to you? click all that apply</h1>
 					
@@ -120,6 +119,11 @@
 					        <input id="cb-5" class="checkbox" name="cb-5" type="checkbox" >
 					        <label for="cb-5" class="checkbox-label">Camping grounds</label>			
 						</div>
+
+						<div class="col-md-4">
+					        <input id="cb-6" class="checkbox" name="cb-6" type="checkbox" >
+					        <label for="cb-6" class="checkbox-label">Museums</label>			
+						</div>
 					</div>
 
 					<a data-action="next" class="nextquestion btn btn-default">Show me where to go</a>
@@ -127,10 +131,10 @@
 
 				<% } %>
 
-			</main>
-		</div>
+			</div>
+		</main>
 	</div>
-	
+	<% include ../object/footer.ejs %>
 	<% include ../template/base/javascript.ejs %>
 
 	<script>
@@ -149,6 +153,7 @@
 		$('.nextquestion').on('click', function(e){
 			var action = $(this).attr('data-action'),
 				response;
+			var nextUrl = curr + 1;
 			if( action == 'next' ) {
 				//get answer from page...
 				switch(curr) {
@@ -173,12 +178,19 @@
 							$.cookie('gomogo-postcode-to', $('#p3-b').val() );
 						}
 						break;
+					case 4:
+						var cbValuesArray = $("input:checkbox").map(function(){
+						  return $(this).text()+':'+$(this).is(":checked")+',';
+						}).get();
+
+						$.cookie('gomogo-lifestyle', cbValuesArray );
+						nextUrl = '/result';
+						break;
 					default:
 						console.log('no next action');
 				}
 			} 
 
-			var nextUrl = curr + 1;
 			window.location.href = nextUrl;
 		});
 		

@@ -1,18 +1,43 @@
 //** body, image/object/video, hr, links
 
 %homepage-bg-thing {
-    background-image: url('/img/massive-map.jpg');
+    background: url('/img/massive-map.jpg') no-repeat center center fixed;
     background-blend-mode: multiply;
-    background-size: cover 100%;
+    background-size: cover;
 }
 
+html, body {
+    height: 100%;
+    height: calc(100% - 75px - 80px);
+}
 body {
     background: $bg-color;
+}
 
-    &.home {
-        background-color: $color-primary;
-        color: $white;
-        @extend %homepage-bg-thing;
+.content.wrap {
+    min-height: 100%;
+    padding-bottom: 80px;
+}
+section.container {
+    padding: 15px 0;
+}
+body:not(.home) footer {
+    position: absolute;
+    bottom: 0;
+}
+footer {
+    background: $white;
+    padding: 20px 0;
+    position: relative;
+    bottom:     0;
+    width: 100%;
+    min-height: 80px;
+    .copyright {
+        display: inline-block;
+        padding: 10px 0;
+    }
+    .nav--footer {
+        float: right;
     }
 }
 
@@ -27,12 +52,16 @@ main {
 //
 
 .jumbotron {
-    background: none;
-
-}
-.home .jumbotron {
+    background-color: $color-primary;
+    color: $white;
+    @extend %homepage-bg-thing;
+    padding: 8vh 0 15vh;
+    .row:first-of-type {
+        margin-bottom: 70px;
+    }
     h1 {
         margin-top: 0;
+        padding-top: 7vh;
         font-size: 4rem;
         margin-bottom: 100px;
     }
@@ -49,9 +78,28 @@ main {
         padding-bottom: 50px;
     }
     .btn-default:not(.tall) {
-        position: absolute;
-        bottom: 0;
-        right: 0;
+        margin-top: 50px;
+    }
+
+    &[data-current-question="1"] {
+        background-image: url('../img/svg/amount.svg');
+        background-repeat: no-repeat;
+        background-position: top right;
+        background-size: 60%;
+    }
+
+    &[data-current-question="2"] {
+        background-image: url('../img/svg/profess.svg');
+        background-repeat: no-repeat;
+        background-position: top right;
+        background-size: 60%;
+    }
+
+    &[data-current-question="3"] {
+        background-image: url('../img/svg/place.svg');
+        background-repeat: no-repeat;
+        background-position: top right;
+        background-size: 60%;
     }
 }
 
@@ -60,18 +108,17 @@ main {
 }
 
 .breadcrumb {
-    background: rgba(255,255,255,0.3);
+    background: transparent;
     margin-top: 20px;
     margin-bottom: 40px;
+    padding-left: 0;
 }
-
-
 
 //buttons for now
 
 .btn--primary {
-    background: $color-secondary;
-    color: $black;
+    background: $white;
+    color: $color-primary-dark;
     width: 100%;
     padding: 15px;
     font-size: 2rem;
@@ -86,6 +133,12 @@ main {
     float: right;
     &.tall {
         padding: 50px 15px;
+        font-family: 'Slabo 27px', serif;
+        font-size: 2rem;
+        margin-top: 40px;
+        img {
+            margin-right: 10px;
+        }
     }
     &:hover,
     &:focus,
@@ -146,8 +199,7 @@ main {
     // max-width: 350px;
     width: calc(100%);
     vertical-align: top;
-
-    font-size: 2rem;
+    font-size: 2rem;   
 }
 
 .input__field {
@@ -160,8 +212,8 @@ main {
     border-radius: 0;
     background: #f0f0f0;
     color: $color-primary-dark;
-    font-weight: bold;
     font-family: 'Slabo 27px', serif;
+    font-size: 2rem;
     -webkit-appearance: none; /* for box shadows to show on iOS */
 }
 

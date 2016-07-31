@@ -6,18 +6,15 @@
 
 <body class="home">
     <% include ../object/header.ejs %>
-
-    <div class="container">
-        <div class="content wrap grid" id="content">
-
-            <main class="main">
-                
-                <div class="jumbotron">
-                  
+    <div class="content wrap" id="content">
+        <main class="main">
+            <div class="jumbotron">
+                <div class="container">   
                     <div class="row">
                         <div class="col-md-8">
                             <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed iaculis magna neque, a commodo nisi feugiat in. </h1>
                         </div>
+                        <img class="col-md-4" src="img/svg/arrows.svg" />
                     </div>
                     <div class="row">
                         <div class="col-md-8">
@@ -28,11 +25,49 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
-            </main>
-        </div>
+            <section class="container">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>
+                            Heading
+                        </h2>
+                        <p>
+                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+                        </p>
+                        <p>
+                            <a class="btn" href="#">View details »</a>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>
+                            Heading
+                        </h2>
+                        <p>
+                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+                        </p>
+                        <p>
+                            <a class="btn" href="#">View details »</a>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>
+                            Heading
+                        </h2>
+                        <p>
+                            Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+                        </p>
+                        <p>
+                            <a class="btn" href="#">View details »</a>
+                        </p>
+                    </div>
+                </div> 
+            </section>
+        </main>
     </div>
-    
+    <% include ../object/footer.ejs %>
     <% include ../template/base/javascript.ejs %>
 
     <% include ../dev/devtools.ejs %>

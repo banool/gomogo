@@ -7,19 +7,18 @@
 <body>
     <% include ../object/header.ejs %>
 
-    <div class="container">
-        <div class="content wrap grid" id="content">
+    <div class="content wrap" id="content">
+        <main class="main">
 
-            <main class="main">
+            <div class="container">
             
                 <% include ../object/map.ejs %>
-            
-                <h3><%= data %></h3>
-      
-            </main>
-        </div>
-    </div>
+                <%= data %>
     
+            </div>
+        </main>
+    </div>
+    <% include ../object/footer.ejs %>
     <% include ../template/base/javascript.ejs %>
 
     <% include ../dev/devtools.ejs %>
