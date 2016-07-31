@@ -8,6 +8,7 @@ Looks like Bobby has already completed something like this, so just committed fo
 import csv
 from collections import Counter
 import json
+import geojson
 
 # stuff to run always here such as class/def
 def main():
@@ -58,21 +59,54 @@ class Postcode:
 	def addCharacteristic(self, key, value):
 		self.characteristics[key] = value
 
-	def getDict(self):
+	def getDict(self, includeFeatures=False):
 		data = {}
 		data["name"] = self.name
 		data["state"] = self.state
 		data["postcode"] = self.postcode
 
-		feats = []
-		for f in self.features:
-			feats.append(f.getDict())
-		data["features"] = feats
+		if includeFeatures:
+			feats = []
+			for f in self.features:
+				feats.append(f.getDict())
+			data["features"] = feats
 
 		data["characteristics"] = self.characteristics
 
 		return data
 
+	def createGeoJSON(self):
+		postcodeDict = self.getDict(includeFeatures=True)
+		features = []
+		# Getting FOIs.
+		for feat in postcodeDict["features"]:
+			point = geojson.Point((feat["lat"], feat["lon"]))
+			# With the properties part we can specify more fields of each feature to include.
+			geoFeature = geojson.Feature(geometry=point, id=feat["feature_id"], properties = {k: feat[k] for k in (['name'])})
+			features.append(geoFeature)
+
+		# Getting the polygon boundary.
+		target = str(self.postcode)
+		with open("postcodeMultipoint.geojson", "r") as f:
+			data = json.load(f)
+			for p in data["features"]:
+				if p["properties"]["postcode"] == target:
+					print(type(p['geometry']['coordinates'][0][0]))
+					postcodePolygon = geojson.Feature(geometry=geojson.Polygon(p['geometry']['coordinates'][0][0]), id="suburb")
+
+		features.append(postcodePolygon)
+
+		return geojson.FeatureCollection(features)
+
+	# This includes geojson for the features and postcode boundaries as well as characteristics/basic info.
+	def createFullDict(self):
+		data = {}
+		# Get geoJSON for the features (points) and suburb outline (polygon).
+		data = self.createGeoJSON()
+		# Get additional facts (census data, crime, name of suburb, etc.).
+		data["facts"] = self.getDict(includeFeatures=False)
+
+		return data
 
 	def __str__(self):
 		return "{} - {}\nFeatures\n    {}\nCharacteristics\n    {}".format(self.postcode, self.name, self.features, self.characteristics)

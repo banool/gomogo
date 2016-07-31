@@ -8,14 +8,9 @@ from urlparse import urlparse, parse_qs
 import json
 import re
 from dataGatherer import readPostcodeData
-from geojson import Point, Feature, FeatureCollection
+from random import randint
 
 local = readPostcodeData()
-"""
-for i in postcodes:
-	print(postcodes[i])
-	print
-"""
 
 #script constants / port 80 for server, 8080 for localhost
 PORT_NUMBER = 8080
@@ -48,17 +43,7 @@ class myHandler(BaseHTTPRequestHandler):
 		self.standard_response()
 		self.wfile.write('Error! You have submitted an invalid request.')
 
-
-	def createGeoJSON(self, postcodeDict):
-		features = []
-		for feat in postcodeDict["features"]:
-			point = Point((feat["lat"], feat["lon"]))
-			# With the properties part we can specify more fields of each feature to include.
-			geoFeature = Feature(geometry=point, id=feat["feature_id"], properties = {k: feat[k] for k in (['name'])})
-			features.append(geoFeature)
-		return FeatureCollection(features)
-
-
+	
 	#Handler for the GET requests
 	def do_GET(self):
 
@@ -70,7 +55,6 @@ class myHandler(BaseHTTPRequestHandler):
 		elif self.path == '/jsontest':
 			self.jsontest()
 		elif len(requests) > 0:
-			"""
 			data = {}
 			for postcode in requests:
 				try:
@@ -79,26 +63,11 @@ class myHandler(BaseHTTPRequestHandler):
 					pass
 				print(postcode)
 				if postcode in local:
-					data[postcode] = local[postcode].getDict()
-			data = json.dumps(data)
-			# Scrapping the above and producing geoJSON instead:
-			data = self.createGeoJSON(data)
+					# This is the old line for sending back multiple postcodes at once:
+					# data[postcode] = local[postcode].createFullDict()
+					data = local[postcode].createFullDict()
 
-			self.standard_response()
-			self.wfile.write(data)
-			"""
-			data = {}
-			for postcode in requests:
-				try:
-					postcode = int(postcode)
-				except:
-					pass
-				print(postcode)
-				if postcode in local:
-					data[postcode] = self.createGeoJSON(local[postcode].getDict())
-			data = json.dumps(data)
-			# Scrapping the above and producing geoJSON instead:
-			#data = self.createGeoJSON(data)
+			data = json.dumps(data) # Just getting one postcode.
 
 			self.standard_response()
 			self.wfile.write(data)
@@ -106,6 +75,20 @@ class myHandler(BaseHTTPRequestHandler):
 		else:
 			self.invalidrequest()		
 		return
+	
+
+	"""
+	def do_GET(self):
+		postcode = randint(3000, 3999)
+		try:
+			data = local[postcode].createFullDict()
+		except KeyError:
+
+		print(len(data[postcode]))
+		data = json.dumps(data)
+		self.standard_response()
+		self.wfile.write(data)
+	"""
 
 try:
 	#Create a web server and define the handler to manage the
