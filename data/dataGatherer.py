@@ -76,11 +76,14 @@ class Postcode:
 		return data
 
 	def createGeoJSON(self):
+		# Some example geoJSON: http://openlayers.org/en/v3.17.1/examples/data/geojson/switzerland.geojson
+
 		postcodeDict = self.getDict(includeFeatures=True)
 		features = []
 
 		# Getting the polygon boundary.
 		target = str(self.postcode)
+		# This data is form here: http://ec2-52-62-36-123.ap-southeast-2.compute.amazonaws.com/geoserver/wfs?service=wfs&version=1.0.0&request=getFeature&typeName=datavic:vmadmin_pc_centroid&outputFormat=JSON
 		with open("postcodeMultipoint.geojson", "r") as f:
 			data = json.load(f)
 			for p in data["features"]:
