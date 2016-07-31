@@ -7,12 +7,25 @@ Looks like Bobby has already completed something like this, so just committed fo
 
 import csv
 from collections import Counter
+import json
+
+# stuff to run always here such as class/def
+def main():
+    pass
+
+if __name__ == "__main__":
+	# stuff only to run when not called via 'import' here
+	main()
 
 # This class exists in case we have extra info about each feature.
 # The extra info in the csv might contain information about where it is, what it's called, etc.
 class Feature:
-	def __init__(self, name):
+	def __init__(self, name, feature_id):
 		self.name = name
+		self.feature_id = feature_id
+
+	def getDict(self):
+		return {"name": self.name, "feature_id": self.feature_id}
 
 	def __str__(self):
 		return self.name
@@ -42,6 +55,22 @@ class Postcode:
 
 	def addCharacteristic(self, key, value):
 		self.characteristics[key] = value
+
+	def getDict(self):
+		data = {}
+		data["name"] = self.name
+		data["state"] = self.state
+		data["postcode"] = self.postcode
+
+		feats = []
+		for f in self.features:
+			feats.append(f.getDict())
+		data["features"] = feats
+
+		data["characteristics"] = self.characteristics
+
+		return data
+
 
 	def __str__(self):
 		return "{} - {}\nFeatures\n    {}\nCharacteristics\n    {}".format(self.postcode, self.name, self.features, self.characteristics)
@@ -100,10 +129,11 @@ def readPostcodeData():
 		for foi in reader:
 			name = foi["feature_subtype"]
 			postcode = int(foi["postcode"])
+			feature_id = foi["feature_id"]
 
 			# Could read additional fields for each feature. Location info?
 
-			feature = Feature(name)
+			feature = Feature(name, feature_id)
 
 			if postcode in postcodes:
 				postcodes[postcode].addFeature(feature)
@@ -128,8 +158,6 @@ def readPostcodeData():
 
 	return postcodes
 
-postcodes = readPostcodeData() # This is about 50kb.
-
 
 
 """
@@ -139,10 +167,11 @@ for i in postcodes:
 	except KeyError:
 		pass
 """
-
+"""
 for i in postcodes:
 	print(postcodes[i])
 	print
+"""
 
 """
 def getData(targetFile):
@@ -174,3 +203,4 @@ blah = getData(target)
 
 print(blah[3072])
 """
+
