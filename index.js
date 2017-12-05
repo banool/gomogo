@@ -27,11 +27,11 @@ var middleware = {
     },
 
     globalLocals: function (req, res, cb) {
-        
+
         var url_parts = url.parse(req.url, true);
         var query = url_parts.query;
         var thing = serverStatus(app);
-        res.locals = { 
+        res.locals = {
             title: 'GOMOGO',
             teamname: 'super awesome poi team',
             sitebreakpoint: 'desktop',
@@ -54,7 +54,7 @@ var middleware = {
     },
 
     question: function (req, res, cb) {
-        
+
         var routes = req.originalUrl.split("/");
         res.locals.questionset = routes[routes.length-1];
         cb();
@@ -62,7 +62,7 @@ var middleware = {
 
     result: function (req, res, cb) {
         var postcode = req.params.postcode;
-        client.get("http://139.59.226.51/"+postcode, function (data, response) {
+        client.get("http://localhost:5001/handler"+postcode, function (data, response) {
             res.locals.data = data;
             cb();
         });
@@ -89,5 +89,3 @@ app.get('/about', middleware.index, middleware.render('template/about'));
 app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
 });
-
-
