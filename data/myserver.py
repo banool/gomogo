@@ -1,3 +1,5 @@
+#!myvenv/bin/python
+
 #+----------------------------------------------------------------------------+
 #|           author: Bobby Koteski - last update: 30/7/2016                   |
 #+----------------------------------------------------------------------------+ 
@@ -12,8 +14,7 @@ from random import randint
 
 local = readPostcodeData()
 
-#script constants / port 80 for server, 8080 for localhost
-PORT_NUMBER = 8080
+PORT_NUMBER = 5001
 
 #This class will handles any incoming request from
 #the browser 
