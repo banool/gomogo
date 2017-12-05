@@ -62,7 +62,7 @@ var middleware = {
 
     result: function (req, res, cb) {
         var postcode = req.params.postcode;
-        client.get("http://localhost:5001/handler"+postcode, function (data, response) {
+        client.get("http://localhost:5001/handler/"+postcode, function (data, response) {
             res.locals.data = data;
             cb();
         });
@@ -81,7 +81,7 @@ app.get('/questionnaire/2', middleware.question, middleware.render('template/que
 app.get('/questionnaire/3', middleware.question, middleware.render('template/questions'));
 app.get('/questionnaire/4', middleware.question, middleware.render('template/questions'));
 
-
+app.get('/result', middleware.result, middleware.render('template/result'));
 app.get('/result/:postcode', middleware.result, middleware.render('template/result'));
 
 app.get('/about', middleware.index, middleware.render('template/about'));
