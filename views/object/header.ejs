@@ -1,8 +1,10 @@
 <header id="headerPrimary" class="header header--primary">
-    <h1 class="header__identity">
-        <a href="#" title="<%= title %>" class="logo">
-            <%= description %>
-        </a>
-    </h1>
-    <% include ../object/nav-primary.ejs %>
+    <div class="container">
+        <h1 class="header__identity">
+            <a href="/home" title="<%= title %>" class="logo">
+                <%= description %>
+            </a>
+        </h1>
+        <% include ../object/nav-primary.ejs %>
+    </div>
 </header>

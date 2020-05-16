@@ -1,5 +1,344 @@
 //** body, image/object/video, hr, links
 
+%homepage-bg-thing {
+    background: url('/img/massive-map.jpg') no-repeat center center fixed;
+    background-blend-mode: multiply;
+    background-size: cover;
+}
+
+html, body {
+    height: 100%;
+    height: calc(100% - 75px - 80px);
+}
+body {
+    background: $bg-color;
+}
+
+.content.wrap {
+    min-height: 100%;
+    padding-bottom: 80px;
+}
+section.container {
+    padding: 15px 0;
+}
+body:not(.home) footer {
+    position: absolute;
+    bottom: 0;
+}
+footer {
+    background: $white;
+    padding: 20px 0;
+    position: relative;
+    bottom:     0;
+    width: 100%;
+    min-height: 80px;
+    .copyright {
+        display: inline-block;
+        padding: 10px 0;
+    }
+    .nav--footer {
+        float: right;
+    }
+}
+
 main {
     height: 100%;
+}
+
+//yuk would use vue.js or something for this stuff, but hardcoding for now
+.altquestion[aria-hidden='true'] {
+    display: none;
+}
+//
+
+.jumbotron {
+    background-color: $color-primary;
+    color: $white;
+    @extend %homepage-bg-thing;
+    padding: 8vh 0 15vh;
+    .row:first-of-type {
+        margin-bottom: 70px;
+    }
+    h1 {
+        margin-top: 0;
+        padding-top: 7vh;
+        font-size: 4rem;
+        margin-bottom: 100px;
+    }
+    h3 {
+        font-size: 2rem;
+    }
+}
+
+.questions {
+
+    main {
+        position: relative;
+        min-height: 400px;
+        padding-bottom: 50px;
+    }
+    .btn-default:not(.tall) {
+        margin-top: 50px;
+    }
+
+    &[data-current-question="1"] {
+        background-image: url('../img/svg/amount.svg');
+        background-repeat: no-repeat;
+        background-position: top right;
+        background-size: 60%;
+    }
+
+    &[data-current-question="2"] {
+        background-image: url('../img/svg/profess.svg');
+        background-repeat: no-repeat;
+        background-position: top right;
+        background-size: 60%;
+    }
+
+    &[data-current-question="3"] {
+        background-image: url('../img/svg/place.svg');
+        background-repeat: no-repeat;
+        background-position: top right;
+        background-size: 60%;
+    }
+}
+
+[data-current-question='4'] .row {
+    margin: 60px 0;
+}
+
+.breadcrumb {
+    background: transparent;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding-left: 0;
+}
+
+//buttons for now
+
+.btn--primary {
+    background: $white;
+    color: $color-primary-dark;
+    width: 100%;
+    padding: 15px;
+    font-size: 2rem;
+}
+
+.btn-default {
+    background: $color-primary;
+    color: $white;
+    border: 0;
+    padding: 15px;
+    font-size: 1.5rem;
+    float: right;
+    &.tall {
+        padding: 50px 15px;
+        font-family: 'Slabo 27px', serif;
+        font-size: 2rem;
+        margin-top: 40px;
+        img {
+            margin-right: 10px;
+        }
+    }
+    &:hover,
+    &:focus,
+    &:active,
+    &:hover:active {
+        background: $color-primary-dark;  
+        border: 0;
+        color: $white;
+    }
+}
+
+.checkbox {
+    opacity: 0;
+    position: absolute;   
+}
+
+.checkbox, .checkbox-label {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.checkbox-label {
+    position: relative;
+    font-family: 'Slabo 27px', serif;
+    font-size: 2rem;
+}
+
+.checkbox + .checkbox-label:before {
+    content: '';
+    background: #fff;
+    border: 2px solid #ddd;
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.checkbox:checked + .checkbox-label:before {
+    background: $color-primary;
+}
+
+.checkbox:focus + .checkbox-label {
+  outline: 1px solid #ddd;
+}
+
+/* Jiro :: http://tympanus.net/codrops/2015/01/08/inspiration-text-input-effects/ */
+.input {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    margin: 1em 0;
+    // max-width: 350px;
+    width: calc(100%);
+    vertical-align: top;
+    font-size: 2rem;   
+}
+
+.input__field {
+    position: relative;
+    display: block;
+    float: right;
+    padding: 0.8em;
+    width: 60%;
+    border: none;
+    border-radius: 0;
+    background: #f0f0f0;
+    color: $color-primary-dark;
+    font-family: 'Slabo 27px', serif;
+    font-size: 2rem;
+    -webkit-appearance: none; /* for box shadows to show on iOS */
+}
+
+.input__field:focus {
+    outline: none;
+}
+
+.input__label {
+    display: inline-block;
+    float: right;
+    padding: 0 1em;
+    width: 40%;
+    color: #6a7989;
+    font-weight: bold;
+    font-size: 70.25%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.input__label-content {
+    position: relative;
+    display: block;
+    padding: 1.6em 0;
+    width: 100%;
+}
+
+.input--jiro {
+    margin-top: 2em;
+}
+
+.input__field--jiro {
+    padding: 0.85em 0.5em;
+    width: 100%;
+    background: transparent;
+    color: #DDE2E2;
+    opacity: 0;
+    -webkit-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+}
+
+.input__label--jiro {
+    position: absolute;
+    left: 0;
+    padding: 0 0.85em;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    pointer-events: none;
+}
+
+.input__label-content--jiro {
+    color: $color-primary-dark;
+    -webkit-transition: -webkit-transform 0.3s 0.3s;
+    transition: transform 0.3s 0.3s;
+}
+
+.input__label--jiro::before,
+.input__label--jiro::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+}
+
+.input__label--jiro::before {
+    border-top: 2px solid $color-primary-dark;
+    -webkit-transform: translate3d(0, 100%, 0) translate3d(0, -2px, 0);
+    transform: translate3d(0, 100%, 0) translate3d(0, -2px, 0);
+    -webkit-transition-delay: 0.3s;
+    transition-delay: 0.3s;
+}
+
+.input__label--jiro::after {
+    z-index: -1;
+    background: $color-primary-dark;
+    -webkit-transform: scale3d(1, 0, 1);
+    transform: scale3d(1, 0, 1);
+    -webkit-transform-origin: 50% 0%;
+    transform-origin: 50% 0%;
+}
+
+.input__field--jiro:focus,
+.input--filled .input__field--jiro {
+
+    opacity: 1;
+    -webkit-transition-delay: 0.3s;
+    transition-delay: 0.3s;
+}
+
+.input__field--jiro:focus + .input__label--jiro .input__label-content--jiro,
+.input--filled .input__label-content--jiro {
+    -webkit-transform: translate3d(0, -80%, 0);
+    transform: translate3d(0, -80%, 0);
+    -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.input__field--jiro:focus + .input__label--jiro::before,
+.input--filled .input__label--jiro::before {
+    -webkit-transition-delay: 0s;
+    transition-delay: 0s;
+}
+
+.input__field--jiro:focus + .input__label--jiro::before,
+.input--filled .input__label--jiro::before {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.input__field--jiro:focus + .input__label--jiro::after,
+.input--filled .input__label--jiro::after {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+    -webkit-transition-delay: 0.3s;
+    transition-delay: 0.3s;
+    -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
 }

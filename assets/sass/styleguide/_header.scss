@@ -1,20 +1,42 @@
 //** Header
 
-$header-height: 50px;
+$header-height: 75px;
 
 //## header primary
 .header {
-    background: #f2f2f2;
-    color: red;
-    position: fixed;
+    background: $color-primary;
+    box-shadow: 1px 4px 0px rgba(0,0,0,0.2);
     height: $header-height;
-    width: 100%;
+    overflow: hidden;    
+    position: fixed;
     top: 0;
     transition: top 0.15s ease-in-out;
-    overflow: hidden;    
-
+    width: 100%;
+    z-index: 3;
     .header__identity {
-        margin: 0;
+        margin: 5px 0;
+        display: inline-block;
+        position: relative;
+        // &:before {
+        //     content: '';
+        //     width: 600px;
+        //     height: 100px;
+        //     background: $color-secondary;
+        //     position: absolute;
+        //     right: 100%;
+        //     top: -10px;
+        // }
+
+        // &:after {
+        //     content: '';
+        //     width: 160px;
+        //     height: 100px;
+        //     background: linear-gradient(to right, rgba(224,191,30,1) 0%,rgba(0,0,0,0) 100%);
+        //     position: absolute;
+        //     left: 0;
+        //     top: -10px;
+        //     z-index: -1;
+        // }
     }
 
     .logo {
@@ -23,9 +45,9 @@ $header-height: 50px;
         display: inline-block;
         position: relative;
         margin: 0;
-        height: 40px;
+        height: 60px;
         top: 5px;
-        width: 40px;
+        width: 230px;
     }
 
     &.user-is-scrolldown {
