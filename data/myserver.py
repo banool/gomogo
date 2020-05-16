@@ -8,13 +8,14 @@
 from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
 from urlparse import urlparse, parse_qs
 import json
+import os
 import re
 from dataGatherer import readPostcodeData
 from random import randint
 
 local = readPostcodeData()
 
-PORT_NUMBER = 5001
+PORT_NUMBER = int(os.getenv("BACKEND_PORT", 5001))
 
 #This class will handles any incoming request from
 #the browser 
