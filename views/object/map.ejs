@@ -27,20 +27,19 @@
 		view: view
 	});
 
-	
-
 	var geolocation = new ol.Geolocation({
         projection: view.getProjection()
     });
-    geolocation.setTracking(true);
+    
+    // geolocation.on('change', function() {
+    //     $('#devtools .accuracy').innerText = geolocation.getAccuracy() + ' [m]';
+    //     $('#devtools .altitude').innerText = geolocation.getAltitude() + ' [m]';
+    //     $('#devtools .altitudeAccuracy').innerText = geolocation.getAltitudeAccuracy() + ' [m]';
+    //     $('#devtools .heading').innerText = geolocation.getHeading() + ' [rad]';
+    //     $('#devtools .speed').innerText = geolocation.getSpeed() + ' [m/s]';
+    // });
 
-    geolocation.on('change', function() {
-        $('#devtools .accuracy').innerText = geolocation.getAccuracy() + ' [m]';
-        $('#devtools .altitude').innerText = geolocation.getAltitude() + ' [m]';
-        $('#devtools .altitudeAccuracy').innerText = geolocation.getAltitudeAccuracy() + ' [m]';
-        $('#devtools .heading').innerText = geolocation.getHeading() + ' [rad]';
-        $('#devtools .speed').innerText = geolocation.getSpeed() + ' [m/s]';
-    });
+    geolocation.setTracking(true);
 
     var accuracyFeature = new ol.Feature();
     geolocation.on('change:accuracyGeometry', function() {
